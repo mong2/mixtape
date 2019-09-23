@@ -1,0 +1,18 @@
+{
+	"changes": [
+		{
+			"action": "update",
+			"playlist_id": 2,
+			"song_id": 3
+		},
+		{
+			"action": "delete",
+			"playlist_id": 3
+		},
+		{
+			"action": "create",
+			"user_id": 5,
+			"song_ids": [24, 3, 5]
+		}
+	]
+}
