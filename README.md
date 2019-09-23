@@ -10,7 +10,7 @@
         git clone https://github.com/mong2/mixtape.git
         cd mixtape
         pip install -r requirement.txt 
-2. Mixtape Application includes below action, 
+2. Mixtape Application includes below actions, 
    *  Remove an existing playlist.
         * action: "delete"
         * required params: 
@@ -41,7 +41,7 @@
        ]
    }
    ```
-3. run the application 
+3. run the application. Note: Please make sure to specify a valid file path for the files. Mixtape currently does not support writing files to a non-existing working directory.
     ```
     python mixtape.py mixtape.json changefile.json output.json
     ```
