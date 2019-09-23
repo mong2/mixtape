@@ -3,13 +3,15 @@
 ## Prerequisites
 
 * Python 2.7
+* Python library
+    * argparse 
+    * pytest
 
 ## Using the tool
 1. Clone the code and install the required packages:
 
         git clone https://github.com/mong2/mixtape.git
         cd mixtape
-        pip install -r requirement.txt 
 2. Mixtape Application includes below actions, 
    *  Remove an existing playlist.
         * action: "delete"
