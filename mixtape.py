@@ -7,15 +7,16 @@ from lib.file_controller import FileController
 
 class Mixtape():
     def __init__(self, options):
-        self.input_file = validate_option(options['input'])
-        self.output = validate_option(options['output'])
-        self.changefile = validate_option(options['changefile'])
+        self.input_file = self.validate_option(options['input'])
+        self.output = self.validate_option(options['output'])
+        self.changefile = self.validate_option(options['changefile'])
+        self.file_controller = FileController()
         self.load_files()
         self.load_controllers()
 
     def validate_option(self, option):
-        if option.endswith('.json'):
-            return option
+        if option[0].endswith('.json'):
+            return option[0]
         else: 
             raise ValueError('Invalid file type. All file should be in json format.')
             
@@ -24,7 +25,6 @@ class Mixtape():
         self.changes = self.file_controller.read_file(self.changefile)['changes']
 
     def load_controllers(self):
-        self.file_controller = FileController()
         self.pl = PlaylistController(self.playlist_df)
         self.user = UserController(self.user_df)
         self.song = SongController(self.song_df)
