@@ -17,9 +17,9 @@ class Mixtape():
     def validate_option(self, option):
         if option[0].endswith('.json'):
             return option[0]
-        else: 
+        else:
             raise ValueError('Invalid file type. All file should be in json format.')
-            
+
     def load_files(self):
         self.user_df, self.playlist_df, self.song_df = self.file_controller.build_dataframe(self.input_file)
         self.changes = self.file_controller.read_file(self.changefile)['changes']
@@ -32,18 +32,18 @@ class Mixtape():
     def run(self):
         for change in self.changes:
             if change['action'] == 'delete':
-                self.playlist_df = getattr(self.pl, change['action'])(change['playlist_id'])
+                self.playlist_df = self.pl.delete(change['playlist_id'])
             elif change['action'] == 'update':
                 if self.song.exist(change['song_id']):
-                    self.playlist_df = getattr(self.pl, change['action'])(change['playlist_id'], change['song_id'])
+                    self.playlist_df = self.pl.update(change['playlist_id'], change['song_id'])
             elif change['action'] == 'create':
                 if self.user.exist(change['user_id']):
                     if self.song.exist(change['song_ids']):
-                        self.playlist_df = getattr(self.pl, 'create')(change['user_id'], change['song_ids'])
+                        self.playlist_df = self.pl.create(change['user_id'], change['song_ids'])
             else:
                 raise ValueError('Invalid action: %s' % change['action'])
         self.file_controller.write_file(self.output, self.playlist_df)
-        return None 
+        return None
 
 if __name__ == "__main__":
     options = Options()
